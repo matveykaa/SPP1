@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TracerLib
 {
-    class Writer
+    public class Writer
     {
         public void toConsole(string text)
         {

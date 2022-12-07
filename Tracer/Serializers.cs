@@ -10,7 +10,6 @@ using Newtonsoft.Json;
 namespace TracerLib
 {
     
-    
         public class Record
         {
             [XmlIgnore]
@@ -46,8 +45,18 @@ namespace TracerLib
 
             return stringWriter.ToString();
         }
+        public string toJSON(TraceResult result)
+        {
+            List<Record> records = new List<Record>();
+            foreach (int key in result.threads.Keys)
+            {
+                records.Add(new Record(key, result.threads[key]));
+            }
 
-       
+            string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+            return json;
+        }
+
 
     }
 }

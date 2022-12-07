@@ -30,7 +30,15 @@ namespace lab1
 
 
             //Outputing
+            var writer = new Writer();
+            var serialize = new Serializers();
 
+            string outRes = serialize.toXML(res);
+            writer.toConsole(outRes);
+            writer.toFile(outRes, "xml.txt");
+
+            outRes = serialize.toJSON(res);
+            writer.toConsole(outRes);
 
             Console.ReadLine();
 

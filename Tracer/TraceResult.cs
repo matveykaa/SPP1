@@ -10,14 +10,14 @@ using System.Text.Json.Serialization;
 
 namespace TracerLib
 {
-  
+    [Serializable]
     public class MethodRes
     {
-     
+        [XmlAttribute]
         public string methodName;
-       
+        [XmlAttribute]
         public string className;
-      
+        [XmlAttribute]
         public long time;
         public readonly List<MethodRes> childMethods = new List<MethodRes>();
 
@@ -41,11 +41,16 @@ namespace TracerLib
 
     }
 
-   
+    [Serializable]
     public class ThreadRes
     {
-        public long time;
 
+        [Newtonsoft.Json.JsonIgnore]
+        [XmlAttribute]
+        public int id;
+        [XmlAttribute]
+        public long time;
+        [XmlElement(ElementName = "methods")]
         public List<MethodRes> methods = new List<MethodRes>();
 
 
@@ -60,7 +65,7 @@ namespace TracerLib
         }
     }
 
-  
+    [Serializable]
     public class TraceResult
     {
         //[Newtonsoft.Json.JsonProperty("id")]

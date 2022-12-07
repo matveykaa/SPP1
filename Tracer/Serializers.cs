@@ -8,8 +8,8 @@ using Newtonsoft.Json;
 
 namespace TracerLib
 {
-    class Serializers
-    {
+    
+    
         public class Record
         {
             [XmlIgnore]
@@ -28,5 +28,25 @@ namespace TracerLib
             {
             }
         }
+    public class Serializers
+    {
+
+        public string toXML(TraceResult result)
+        {
+            List<Record> records = new List<Record>();
+            foreach (int key in result.threads.Keys)
+            {
+                records.Add(new Record(key, result.threads[key]));
+            }
+
+            XmlSerializer formatter = new XmlSerializer(typeof(List<Record>));
+          
+            formatter.Serialize(stringWriter, records);
+
+            return stringWriter.ToString();
+        }
+
+       
+
     }
 }

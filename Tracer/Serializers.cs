@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,7 +41,7 @@ namespace TracerLib
             }
 
             XmlSerializer formatter = new XmlSerializer(typeof(List<Record>));
-          
+            var stringWriter = new StringWriter();
             formatter.Serialize(stringWriter, records);
 
             return stringWriter.ToString();
